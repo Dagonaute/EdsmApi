@@ -22,7 +22,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION 
+          dotnet-version: ${{ env.DOTNET_VERSION }}
       # Run dotnet build and package
       - name: dotnet build and test
         run: |
