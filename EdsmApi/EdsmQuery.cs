@@ -8,6 +8,9 @@ using System.Text;
 
 namespace EdsmApi
 {
+    /// <summary>
+    /// Base query to EDSM.
+    /// </summary>
     public abstract class EdsmQuery : IEdsmQuery
     {
         #region fields
@@ -64,6 +67,10 @@ namespace EdsmApi
         #endregion methods
     }
 
+    /// <summary>
+    /// Query to api-v1
+    /// https://www.edsm.net/en/api-v1
+    /// </summary>
     public abstract class EdsmQueryApiV1 : EdsmQuery
     {
         #region fields
@@ -84,6 +91,10 @@ namespace EdsmApi
         public bool ShowCoordinates { get; set; } = true;
     }
 
+    /// <summary>
+    /// Query to api-system-v1
+    /// https://www.edsm.net/en/api-system-v1
+    /// </summary>
     public abstract class EdsmQueryApiSystemV1 : EdsmQuery
     {
         #region fields
@@ -98,6 +109,9 @@ namespace EdsmApi
         #endregion ctor
     }
 
+    /// <summary>
+    /// Known parameters names for querying the API.
+    /// </summary>
     public class EdsmQueryParameterName
     {
         public const string systemName = nameof(systemName);
