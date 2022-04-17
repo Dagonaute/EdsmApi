@@ -24,7 +24,7 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
       # Run dotnet build and package
-      - name: dotnet build and test
+      - name: dotnet build and pack
         run: |
           dotnet restore
           dotnet build --configuration '${{ env.BUILD_CONFIGURATION }}'
@@ -32,4 +32,4 @@ jobs:
           dotnet pack -c '${{ env.BUILD_CONFIGURATION }}'
       # Publish the package to GitHub Package Registry
       - name: 'dotnet publish'
-        run: dotnet nuget push bin/Release/*.nupkg
+        run: dotnet nuget push bin/Release/*.nupkg -Source ${{ GITHUB_PACKAGE_REGISTRY_URL }}
