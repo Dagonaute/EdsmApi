@@ -35,5 +35,5 @@ jobs:
       - name: 'dotnet publish'
         run: |
           dotnet nuget add source --username tbayart --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github ${{ env.GITHUB_PACKAGE_REGISTRY_URL }}
-          dotnet nuget push nupack/*.nupkg --source ${{ env.GITHUB_PACKAGE_REGISTRY_URL }} -k ${{ secrets.GITHUB_TOKEN }}
+          dotnet nuget push nupack/*.nupkg --source github
           
