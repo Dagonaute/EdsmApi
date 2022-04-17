@@ -1,7 +1,7 @@
 # EdsmApi
 C# implementation to query EDSM Api from [edsm.net](https://www.edsm.net/)
 
-[![Last build](https://github.com/Dagonaute/EdsmApi/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Dagonaute/EdsmApi/actions/workflows/dotnet.yml)
+[![Build](https://github.com/Dagonaute/EdsmApi/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Dagonaute/EdsmApi/actions/workflows/dotnet.yml)
 
 ## Usage sample
     var requestEngine = serviceProvider.GetRequiredService<EdsmRequestEngine>();
