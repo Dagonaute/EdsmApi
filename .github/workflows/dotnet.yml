@@ -10,6 +10,7 @@ env:
   BUILD_CONFIGURATION: 'Release'                                                   # build configuration
   DOTNET_VERSION: '5.0.x'                                                          # the dot net version
   GITHUB_PACKAGE_REGISTRY_URL: https://nuget.pkg.github.com/Dagonaute/index.json   # the GitHub package registry url
+  GITHUB_PACKAGE_URL: https://nuget.pkg.github.com/Dagonaute/                      # the GitHub package url
   NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}                                    # Auth token to access the GitHub Package Registry
  
 jobs:
@@ -32,4 +33,7 @@ jobs:
           dotnet pack --configuration '${{ env.BUILD_CONFIGURATION }}' --output nupack
       # Publish the package to GitHub Package Registry
       - name: 'dotnet publish'
-        run: dotnet nuget push nupack/*.nupkg --source ${{ env.GITHUB_PACKAGE_REGISTRY_URL }} --api-key ${{ env.NUGET_AUTH_TOKEN }}
+        run: |
+          dotnet nuget add source --username tbayart --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github ${{ env.GITHUB_PACKAGE_REGISTRY_URL }}
+          dotnet nuget push nupack/*.nupkg
+          
