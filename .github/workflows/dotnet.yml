@@ -1,4 +1,4 @@
-name: build
+name: Build
 
 on:
   create:
@@ -20,7 +20,7 @@ env:
  
 jobs:
   build:
-    name: build
+    name: Build
     runs-on: ubuntu-latest
     steps:
       # Checkout the repo
