@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Copyright>Tony Bayart</Copyright>
+    <Company>Dagonaute</Company>
+    <Authors>Tony Bayart</Authors>
+    <PackageProjectUrl>https://github.com/Dagonaute/EdsmApi</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Dagonaute/EdsmApi.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
