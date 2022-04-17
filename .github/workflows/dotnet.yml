@@ -1,0 +1,39 @@
+name: Publish Nuget Package to GitHub Package Registry
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  BUILD_CONFIGURATION: 'Release'                                                   # build configuration
+  DOTNET_VERSION: '5.0.x'                                                          # the dot net version
+  GITHUB_PACKAGE_REGISTRY_URL: https://nuget.pkg.github.com/Dagonaute/index.json   # the GitHub package registry url
+  GITHUB_PACKAGE_URL: https://nuget.pkg.github.com/Dagonaute/                      # the GitHub package url
+  NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}                                    # Auth token to access the GitHub Package Registry
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the repo
+      - uses: actions/checkout@v3
+      # Setup .NET Core SDK
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+      # Run dotnet build and package
+      - name: dotnet build and pack
+        run: |
+          dotnet restore
+          dotnet build --configuration '${{ env.BUILD_CONFIGURATION }}'
+          # dotnet test --configuration '${{ env.BUILD_CONFIGURATION }}'
+          dotnet pack --configuration '${{ env.BUILD_CONFIGURATION }}' --output nupack
+      # Publish the package to GitHub Package Registry
+      - name: 'dotnet publish'
+        run: |
+          dotnet nuget add source --username tbayart --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github ${{ env.GITHUB_PACKAGE_REGISTRY_URL }}
+          dotnet nuget push nupack/*.nupkg --source github
+          
