@@ -8,11 +8,16 @@ namespace EdsmApi
     /// </summary>
     public class EdsmQueryBodies : EdsmQueryApiSystemV1, IEdsmQuery<EdsmSystemBodies>
     {
-        private static string[] _querySegment = { "bodies" };
+        private static string[] _querySegment = { QueryStrings.bodies };
 
         public EdsmQueryBodies()
             : base(_querySegment)
         {
         }
+    }
+
+    public partial class QueryStrings
+    {
+        public const string bodies = "bodies";
     }
 }

@@ -10,7 +10,7 @@ namespace EdsmApi
     /// </summary>
     public class EdsmQuerySphereSystems : EdsmQueryApiV1, IEdsmQuery<List<EdsmSystem>>
     {
-        private static string[] _querySegment = { "sphere-systems" };
+        private static string[] _querySegment = { QueryStrings.sphereSystems };
 
         public EdsmQuerySphereSystems()
             : base(_querySegment)
@@ -23,5 +23,10 @@ namespace EdsmApi
         /// </summary>
         [DataMember(Name = EdsmQueryParameterName.radius)]
         public int Radius { get; set; }
+    }
+
+    public partial class QueryStrings
+    {
+        public const string sphereSystems = "sphere-systems";
     }
 }

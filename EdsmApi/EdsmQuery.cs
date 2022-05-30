@@ -14,26 +14,20 @@ namespace EdsmApi
     public abstract class EdsmQuery : IEdsmQuery
     {
         #region fields
-        private const char _joinSeparator = '/';
-        private static string[] _edsmUrl = { "https://www.edsm.net" };
+        private static string[] _edsmUrl = { QueryStrings.edsmDomain };
         private string _urlBase;
         #endregion fields
 
         #region ctor
         protected EdsmQuery(IEnumerable<string> segments)
         {
-            _urlBase = string.Join(_joinSeparator, _edsmUrl.Concat(segments));
+            _urlBase = string.Join(QueryStrings.joinSeparator, _edsmUrl.Concat(segments));
         }
         #endregion ctor
 
         #region IEdsmQuery
         public string Url => BuildUrl();
         #endregion IEdsmQuery
-
-        #region properties
-        [DataMember(Name = EdsmQueryParameterName.systemName)]
-        public string SystemName { get; set; }
-        #endregion properties
 
         #region methods
         protected string BuildUrl()
@@ -74,7 +68,7 @@ namespace EdsmApi
     public abstract class EdsmQueryApiV1 : EdsmQuery
     {
         #region fields
-        private static string[] querySegment = { "api-v1" };
+        private static string[] querySegment = { QueryStrings.apiV1 };
         #endregion fields
 
         #region ctor
@@ -84,11 +78,16 @@ namespace EdsmApi
         }
         #endregion ctor
 
+        #region properties
+        [DataMember(Name = EdsmQueryParameterName.systemName)]
+        public string SystemName { get; set; }
+
         [DataMember(Name = EdsmQueryParameterName.showId)]
         public bool ShowId { get; set; } = true;
 
         [DataMember(Name = EdsmQueryParameterName.showCoordinates)]
         public bool ShowCoordinates { get; set; } = true;
+        #endregion properties
     }
 
     /// <summary>
@@ -98,7 +97,7 @@ namespace EdsmApi
     public abstract class EdsmQueryApiSystemV1 : EdsmQuery
     {
         #region fields
-        private static string[] querySegment = { "api-system-v1" };
+        private static string[] querySegment = { QueryStrings.apiSystemV1 };
         #endregion fields
 
         #region ctor
@@ -107,6 +106,19 @@ namespace EdsmApi
         {
         }
         #endregion ctor
+
+        #region properties
+        [DataMember(Name = EdsmQueryParameterName.systemName)]
+        public string SystemName { get; set; }
+        #endregion properties
+    }
+
+    public partial class QueryStrings
+    {
+        public const char joinSeparator = '/';
+        public const string edsmDomain = "https://www.edsm.net";
+        public const string apiV1 = "api-v1";
+        public const string apiSystemV1 = "api-system-v1";
     }
 
     /// <summary>
@@ -114,12 +126,12 @@ namespace EdsmApi
     /// </summary>
     public class EdsmQueryParameterName
     {
-        public const string systemName = nameof(systemName);
-        public const string showId = nameof(showId);
-        public const string radius = nameof(radius);
-        public const string showCoordinates = nameof(showCoordinates);
-        public const string showInformation = nameof(showInformation);
-        public const string showPermit = nameof(showPermit);
-        public const string size = nameof(size);
+        public const string systemName = "systemName";
+        public const string showId = "showId";
+        public const string radius = "radius";
+        public const string showCoordinates = "showCoordinates";
+        public const string showInformation = "showInformation";
+        public const string showPermit = "showPermit";
+        public const string size = "size";
     }
 }

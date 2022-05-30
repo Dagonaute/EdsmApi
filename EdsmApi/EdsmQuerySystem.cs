@@ -9,7 +9,7 @@ namespace EdsmApi
     /// </summary>
     public class EdsmQuerySystem : EdsmQueryApiV1, IEdsmQuery<EdsmSystem>
     {
-        private static string[] _querySegment = { "system" };
+        private static string[] _querySegment = { QueryStrings.system };
 
         public EdsmQuerySystem()
             : base(_querySegment)
@@ -21,5 +21,10 @@ namespace EdsmApi
 
         [DataMember(Name = EdsmQueryParameterName.showPermit)]
         public bool ShowPermit { get; set; } = true;
+    }
+
+    public partial class QueryStrings
+    {
+        public const string system = "system";
     }
 }
