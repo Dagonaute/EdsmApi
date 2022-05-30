@@ -15,12 +15,6 @@ namespace EdsmApi
             : base(_querySegment)
         {
         }
-
-        [DataMember(Name = EdsmQueryParameterName.showInformation)]
-        public bool ShowInformation { get; set; } = true;
-
-        [DataMember(Name = EdsmQueryParameterName.showPermit)]
-        public bool ShowPermit { get; set; } = true;
     }
 
     public partial class QueryStrings

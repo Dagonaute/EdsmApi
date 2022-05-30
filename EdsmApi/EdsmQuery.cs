@@ -79,14 +79,46 @@ namespace EdsmApi
         #endregion ctor
 
         #region properties
+        /// <summary>
+        /// The system name.
+        /// </summary>
         [DataMember(Name = EdsmQueryParameterName.systemName)]
         public string SystemName { get; set; }
 
+        /// <summary>
+        /// True to get the system's EDSM internal ID in the response.
+        /// False otherwise.
+        /// </summary>
         [DataMember(Name = EdsmQueryParameterName.showId)]
-        public bool ShowId { get; set; } = true;
+        public bool? ShowId { get; set; }
 
+        /// <summary>
+        /// True to get the system coordinates in the response.
+        /// False otherwise.
+        /// </summary>
         [DataMember(Name = EdsmQueryParameterName.showCoordinates)]
-        public bool ShowCoordinates { get; set; } = true;
+        public bool? ShowCoordinates { get; set; }
+
+        /// <summary>
+        /// True to get the system permit if there is one in the response.
+        /// False otherwise.
+        /// </summary>
+        [DataMember(Name = EdsmQueryParameterName.showPermit)]
+        public bool? ShowPermit { get; set; }
+
+        /// <summary>
+        /// True to get the the system information like allegiance, government... in the response.
+        /// False otherwise.
+        /// </summary>
+        [DataMember(Name = EdsmQueryParameterName.showInformation)]
+        public bool? ShowInformation { get; set; }
+
+        /// <summary>
+        /// True to get the system's primary star if known.
+        /// False otherwise.
+        /// </summary>
+        [DataMember(Name = EdsmQueryParameterName.showPrimaryStar)]
+        public bool? ShowPrimaryStar { get; set; }
         #endregion properties
     }
 
@@ -128,10 +160,14 @@ namespace EdsmApi
     {
         public const string systemName = "systemName";
         public const string showId = "showId";
-        public const string radius = "radius";
         public const string showCoordinates = "showCoordinates";
         public const string showInformation = "showInformation";
         public const string showPermit = "showPermit";
+        public const string showPrimaryStar = "showPrimaryStar";
+        public const string radius = "radius";
         public const string size = "size";
+        public const string x = "x";
+        public const string y = "y";
+        public const string z = "z";
     }
 }
